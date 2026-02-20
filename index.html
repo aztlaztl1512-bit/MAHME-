@@ -42,9 +42,33 @@
             padding: 12px 18px; border: 2px solid var(--primary); border-radius: 12px;
             background: white; color: var(--primary); font-weight: bold; cursor: pointer;
             transition: 0.3s; flex-grow: 1; max-width: 170px; font-size: 0.9rem;
+            position: relative;
         }
 
         .tab-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(43, 108, 176, 0.3); }
+
+        /* تأثير سارينة الشرطة (السوفيتي) للأيقونة */
+        .police-siren {
+            display: inline-block;
+            font-size: 1.2rem;
+            animation: siren-spin 1s infinite linear, siren-flash 0.5s infinite alternate;
+        }
+        @keyframes siren-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes siren-flash { 
+            0% { color: #ff0000; text-shadow: 0 0 10px #ff0000; } 
+            100% { color: #0000ff; text-shadow: 0 0 10px #0000ff; } 
+        }
+
+        /* نبض الأقسام الذهبي القوي */
+        .guide-pulse {
+            animation: urgent-gold-pulse 2s infinite;
+            border: 3px solid var(--gold) !important;
+        }
+        @keyframes urgent-gold-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); box-shadow: 0 5px 25px rgba(212, 175, 55, 0.6); }
+            100% { transform: scale(1); }
+        }
 
         .tab-btn.locked {
             background: #edf2f7; color: var(--locked-gray); border-color: var(--border-gray);
@@ -58,16 +82,14 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        .model-list { 
-            display: none; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
-            gap: 20px; padding: 20px 5%;
-        }
+        .model-list { display: none; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; padding: 20px 5%; }
         .model-list.active { display: grid; }
 
         .btn {
             background: white; padding: 25px 15px; text-decoration: none;
             border-radius: 20px; color: #2d3748; border: 1px solid var(--border-gray);
             display: flex; flex-direction: column; align-items: center; gap: 12px; transition: 0.3s;
+            font-weight: bold;
         }
         .btn:hover { border-color: var(--primary); background: #f8fbff; transform: translateY(-5px); }
         .icon-circle { font-size: 24px; width: 50px; height: 50px; background: #edf2f7; border-radius: 15px; display: flex; align-items: center; justify-content: center; }
@@ -76,13 +98,13 @@
 
         #ai-query { width: 90%; max-width: 600px; padding: 18px; border-radius: 15px; border: 2px solid var(--primary); font-size: 1.1rem; text-align: center; outline: none; margin-bottom: 15px; }
         .ai-btn { background: var(--grad-primary); color: white; border: none; padding: 15px 35px; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.1rem; transition: 0.3s; margin: 5px; }
-        .ai-btn:hover { transform: scale(1.05); opacity: 0.9; }
-        .upload-section { margin-top: 20px; padding: 20px; border: 2px dashed var(--primary); border-radius: 15px; background: #f7fafc; }
+        .upload-section { margin-top: 20px; padding: 30px; border: 2px dashed var(--primary); border-radius: 15px; background: #f7fafc; }
+        .direct-upload-btn { background: #4a5568; color: white; padding: 15px 40px; border-radius: 12px; cursor: pointer; display: inline-block; font-weight: bold; border: none; transition: 0.3s; font-size: 1.1rem; }
     </style>
 </head>
 <body id="main-body">
 
-<div class="container">
+<div class="container" id="content-container">
     <span class="school-name-text">🏰 ثانوية الأمير عبدالمجيد</span>
     <h1>✨ منصة التميز الرقمية (القسم اللفظي) ✨</h1>
     <div class="teacher-name" id="t-name">إعداد الأستاذ: عبدالعزيز الفيفي 👨‍🏫</div>
@@ -90,7 +112,7 @@
     <div class="tabs-container">
         <button class="tab-btn active" onclick="openTab('analog', 'التناظر اللفظي')">🔗 التناظر اللفظي</button>
         <button class="tab-btn" onclick="openTab('odd', 'المفردة والارتباط')">🔍 المفردة والارتباط</button>
-        <button class="tab-btn" onclick="openTab('ai-helper', 'مساعدك للتأكد من السؤال')">🤖 مساعدك للتأكد من السؤال</button>
+        <button class="tab-btn" onclick="openTab('ai-helper', 'مساعدك للتأكد من السؤال')"><span class="police-siren">🤖</span> مساعدك للتأكد من السؤال</button>
         <button class="tab-btn" onclick="openTab('complete', 'إكمال الجمل')">📝 إكمال الجمل</button>
         <button class="tab-btn locked" onclick="lockNotice('الخطأ السياقي')">❌ الخطأ السياقي</button>
         <button class="tab-btn locked" onclick="lockNotice('استيعاب المقروء')">📖 استيعاب المقروء</button>
@@ -99,7 +121,7 @@
     <input type="text" id="searchBox" placeholder="🔍 ابحث في هذا القسم..." onkeyup="searchModels()">
 
     <div id="analog" class="model-list active">
-        <a href="https://aztlaztl1512-bit.github.io/TALEMAT/" class="btn"><div class="icon-circle">💡</div><span> دليل قسم </span></a>
+        <a href="https://aztlaztl1512-bit.github.io/TALEMAT/" class="btn guide-pulse"><div class="icon-circle">💡</div><span> دليل قسم </span></a>
         <a href="https://aztlaztl1512-bit.github.io/MAHME-1/" class="btn"><div class="icon-circle">📖</div><span>نموذج التناظر 1</span></a>
         <a href="https://aztlaztl1512-bit.github.io/MAHME-2/" class="btn"><div class="icon-circle">🤯</div><span>نموذج التناظر 2</span></a>
         <a href="https://aztlaztl1512-bit.github.io/MAHME-3/" class="btn"><div class="icon-circle">📐</div><span>نموذج التناظر 3</span></a>
@@ -147,7 +169,7 @@
     </div>
 
     <div id="odd" class="model-list">
-        <a href="https://aztlaztl1512-bit.github.io/TALEMAT2/" class="btn"><div class="icon-circle">💡</div><span>دليل قسم </span></a>
+        <a href="https://aztlaztl1512-bit.github.io/TALEMAT2/" class="btn guide-pulse"><div class="icon-circle">💡</div><span>دليل قسم </span></a>
         <a href="https://aztlaztl1512-bit.github.io/school21/" class="btn"><div class="icon-circle">🏆</div><span>نموذج المفردة 1</span></a>
         <a href="https://aztlaztl1512-bit.github.io/school15/" class="btn"><div class="icon-circle">🔍</div><span>نموذج المفردة 2</span></a>
         <a href="https://aztlaztl1512-bit.github.io/school16//" class="btn"><div class="icon-circle">🧪</div><span>نموذج المفردة 3</span></a>
@@ -173,59 +195,52 @@
     <div id="ai-helper" class="model-list" style="grid-template-columns: 1fr;">
         <div style="background: white; padding: 40px; border-radius: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 2px dashed var(--primary);">
             <h2 style="color: var(--primary);">🤖 مساعدك للتأكد من السؤال</h2>
-            <p style="font-size: 1.1rem; color: #555; margin-bottom: 25px;">انسخ السؤال هنا، أو ارفع صورة السؤال للبحث المباشر:</p>
+            <p>انسخ السؤال هنا، أو ارفع صورة السؤال للبحث المباشر:</p>
             <input type="text" id="ai-query" placeholder="ضع نص السؤال هنا للبحث السريع...">
             <br>
             <button class="ai-btn" onclick="askAI()">تحقق بواسطة النص ✨</button>
             <div class="upload-section">
-                <p style="font-weight: bold; color: #2d3748;">📸 هل صورت الشاشة؟</p>
-                <button class="ai-btn" style="background:#4a5568;" onclick="askWithImage()">اضغط هنا لإضافة صور السؤال للبحث</button>
-                <p style="font-size: 0.8rem; color: #718096; margin-top: 10px;">سيفتح الذكاء الاصطناعي ويطلب منك إرفاق الصورة فوراً.</p>
+                <button class="direct-upload-btn" onclick="launchAIPage()">📸 رفع صورة السؤال للبحث المباشر</button>
             </div>
         </div>
     </div>
 
     <div id="complete" class="model-list">
-        <a href="https://aztlaztl1512-bit.github.io/EKMAL-1/" class="btn"><div class="icon-circle">📝</div><span>دليل القسم </span></a>
-        <a href="https://aztlaztl1512-bit.github.io/EKMAL-2/" class="btn"><div class="icon-circle">🔍</div><span>نموذج إكمال الجمل 1</span></a>
- <a href="https://aztlaztl1512-bit.github.io/EKMAL-3/" class="btn"><div class="icon-circle">🧪</div><span>نموذج إكمال الجمل 2</span></a>
- <a href="https://aztlaztl1512-bit.github.io/EKMAL-4/" class="btn"><div class="icon-circle">💡</div><span>نموذج إكمال الجمل 3</span></a>
- <a href="https://aztlaztl1512-bit.github.io/EKMAL-5/" class="btn"><div class="icon-circle">💻</div><span>نموذج إكمال الجمل 4</span></a>
- <a href="https://aztlaztl1512-bit.github.io/EKMAL-6/" class="btn"><div class="icon-circle">🏆</div><span>نموذج إكمال الجمل 5</span></a>
- <a href="https://aztlaztl1512-bit.github.io/EKMAL-7/" class="btn"><div class="icon-circle">📐</div><span>نموذج إكمال الجمل 6</span></a>
- <a href="https://aztlaztl1512-bit.github.io/EKMAL-8/" class="btn"><div class="icon-circle">🌎</div><span>نموذج إكمال الجمل 7</span></a>
-    </div>
-
-    <div id="error" class="model-list"><a href="https://aztlaztl1512-bit.github.io/ABONAOAF4/" class="btn"><div class="icon-circle">❌</div><span>نموذج الخطأ السياقي 1</span></a></div>
-    <div id="reading" class="model-list"><a href="https://aztlaztl1512-bit.github.io/ABONAOAF2/" class="btn"><div class="icon-circle">📖</div><span>نموذج استيعاب المقروء 1</span></a></div>
-
-    <div id="guideModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="hideGuide()">&times;</span>
-            <div id="modal-body"></div>
-        </div>
+        <a href="https://aztlaztl1512-bit.github.io/EKMAL-1/" class="btn guide-pulse"><div class="icon-circle">📝</div><span>دليل القسم </span></a>
+        <a href="https://aztlaztl1512-bit.github.io/ABONAOAF3/" class="btn"><div class="icon-circle">📝</div><span>نموذج إكمال الجمل 1</span></a>
+        <a href="https://aztlaztl1512-bit.github.io/EKMAL-3/" class="btn"><div class="icon-circle">🧪</div><span>نموذج إكمال الجمل 2</span></a>
+        <a href="https://aztlaztl1512-bit.github.io/EKMAL-4/" class="btn"><div class="icon-circle">💡</div><span>نموذج إكمال الجمل 3</span></a>
+        <a href="https://aztlaztl1512-bit.github.io/EKMAL-5/" class="btn"><div class="icon-circle">💻</div><span>نموذج إكمال الجمل 4</span></a>
+        <a href="https://aztlaztl1512-bit.github.io/EKMAL-6/" class="btn"><div class="icon-circle">🏆</div><span>نموذج إكمال الجمل 5</span></a>
+        <a href="https://aztlaztl1512-bit.github.io/EKMAL-7/" class="btn"><div class="icon-circle">📐</div><span>نموذج إكمال الجمل 6</span></a>
+        <a href="https://aztlaztl1512-bit.github.io/EKMAL-8/" class="btn"><div class="icon-circle">🌎</div><span>نموذج إكمال الجمل 7</span></a>
     </div>
 
     <div class="footer-line" id="f-line">✨ أ / عبد العزيز الفيفي - ثانوية الأمير عبدالمجيد 🎓</div>
 </div>
 
 <script>
-    // نظام حماية الملكية الفكرية الفولاذي (الارتباط الشرطي)
+    // الحماية الفولاذية بالاسم والتوقيع
     (function protect() {
         const sig = "✨ أ / عبد العزيز الفيفي - ثانوية الأمير عبدالمجيد 🎓";
         setInterval(() => {
-            const currentFooter = document.getElementById('f-line');
-            const teacherNameLine = document.getElementById('t-name');
-            if (!currentFooter || !currentFooter.innerText.includes(sig) || !teacherNameLine || !teacherNameLine.innerText.includes("عبدالعزيز الفيفي")) {
-                document.body.innerHTML = `
-                    <div style="text-align:center; margin-top:100px; padding:50px; direction:rtl; background:white; height:100vh;">
-                        <h1 style="color:red; font-size:3em; border:10px solid red; display:inline-block; padding:20px; border-radius:20px;">⚠️ تنبيه الحماية</h1>
-                        <p style="font-size:1.5em; margin-top:20px;">عذراً، لا يمكن تشغيل المنصة. هذا العمل ملك للأستاذ <b>عبدالعزيز الفيفي</b>.</p>
-                        <p>تم تعطيل المحتوى بسبب التلاعب بحقوق الملكية الفكرية.</p>
-                    </div>`;
+            const footer = document.getElementById('f-line');
+            const teacher = document.getElementById('t-name');
+            if (!footer || !footer.innerText.includes(sig) || !teacher || !teacher.innerText.includes("عبدالعزيز الفيفي")) {
+                document.body.innerHTML = '<div style="text-align:center; margin-top:100px; direction:rtl;"><h1 style="color:red; border:5px solid red; padding:20px; display:inline-block; border-radius:15px;">⚠️ تنبيه الحماية: تم تعطيل المنصة لانتهاك حقوق الملكية للأستاذ عبدالعزيز الفيفي</h1></div>';
             }
         }, 2000);
     })();
+
+    function launchAIPage() {
+        window.open("https://www.google.com/search?q=تفضل+أرفق+صورة+سؤال+القدرات+هنا&sourceid=chrome&udm=50&aep=42", '_blank');
+    }
+
+    function askAI() {
+        const q = document.getElementById('ai-query').value;
+        if (!q) return alert("فضلاً ضع السؤال أولاً");
+        window.open(`https://www.google.com/search?q=شرح+سؤال+قدرات+لفظي:+${encodeURIComponent(q)}&sourceid=chrome&udm=50&aep=42`, '_blank');
+    }
 
     function openTab(tabId, btnText) {
         let lists = document.getElementsByClassName('model-list');
@@ -238,18 +253,7 @@
         searchModels();
     }
 
-    function askAI() {
-        const query = document.getElementById('ai-query').value;
-        if (!query) return alert("فضلاً ضع السؤال أولاً");
-        window.open(`https://www.google.com/search?q=شرح+سؤال+قدرات+لفظي:+${encodeURIComponent(query)}&sourceid=chrome&udm=50&aep=42`, '_blank');
-    }
-
-    function askWithImage() {
-        const imagePrompt = "تفضل أرفق صورة سؤال القدرات هنا ليتم شرحه لك";
-        window.open(`https://www.google.com/search?q=${encodeURIComponent(imagePrompt)}&sourceid=chrome&udm=50&aep=42`, '_blank');
-    }
-
-    function lockNotice(s) { alert("🛡️ عذراً..\nقسم (" + s + ") ستفتح قريبا بإذن الله."); }
+    function lockNotice(s) { alert("🛡️ عذراً يا بطل..\nقسم (" + s + ") ستفتح قريبا بإذن الله."); }
 
     function searchModels() {
         let input = document.getElementById('searchBox').value.toLowerCase();
