@@ -70,11 +70,6 @@
             100% { transform: scale(1); }
         }
 
-        .tab-btn.locked {
-            background: #edf2f7; color: var(--locked-gray); border-color: var(--border-gray);
-            cursor: not-allowed; opacity: 0.7;
-        }
-
         #searchBox {
             width: 90%; max-width: 500px; padding: 15px; margin-bottom: 25px;
             border: 2px solid var(--primary); border-radius: 15px;
@@ -105,8 +100,8 @@
 <body id="main-body">
 
 <div class="container" id="content-container">
-    <span class="school-name-text"> ثانـويـة الأميـر عبـدالمـجيـد🏰</span>
-    <h1>✨ مـنصـة التـميـز الـرقـميـة (القـسـم اللفـظـي) ✨</h1>
+    <span class="school-name-text">🏰 ثانوية الأمير عبدالمجيد</span>
+    <h1>✨ منصة التميز الرقمية (القسم اللفظي) ✨</h1>
     <div class="teacher-name" id="t-name">إعداد الأستاذ: عبدالعزيز الفيفي 👨‍🏫</div>
 
     <div class="tabs-container">
@@ -114,11 +109,11 @@
         <button class="tab-btn" onclick="openTab('odd', 'المفردة والارتباط')">🔍 المفردة والارتباط</button>
         <button class="tab-btn" onclick="openTab('ai-helper', 'مساعدك للتأكد من السؤال')"><span class="police-siren">🤖</span> مساعدك للتأكد من السؤال</button>
         <button class="tab-btn" onclick="openTab('complete', 'إكمال الجمل')">📝 إكمال الجمل</button>
-        <button class="tab-btn locked" onclick="lockNotice('الخطأ السياقي')">❌ الخطأ السياقي</button>
-        <button class="tab-btn locked" onclick="lockNotice('استيعاب المقروء')">📖 استيعاب المقروء</button>
+        <button class="tab-btn" onclick="openTab('error', 'الخطأ السياقي')">❌ الخطأ السياقي</button>
+        <button class="tab-btn" onclick="openTab('reading', 'استيعاب المقروء')">📖 استيعاب المقروء</button>
     </div>
 
-    <input type="text" id="searchBox" placeholder="🔍 بحث برقم النموذج ..." onkeyup="searchModels()">
+    <input type="text" id="searchBox" placeholder="🔍 ابحث في هذا القسم..." onkeyup="searchModels()">
 
     <div id="analog" class="model-list active">
         <a href="https://aztlaztl1512-bit.github.io/TALEMAT/" class="btn guide-pulse"><div class="icon-circle">💡</div><span> دليل قسم </span></a>
@@ -207,21 +202,23 @@
 
     <div id="complete" class="model-list">
         <a href="https://aztlaztl1512-bit.github.io/EKMAL-1/" class="btn guide-pulse"><div class="icon-circle">📝</div><span>دليل القسم </span></a>
-        <a href="https://aztlaztl1512-bit.github.io/ABONAOAF3/" class="btn"><div class="icon-circle">✅</div><span>نموذج إكمال الجمل 1</span></a>
+        <a href="https://aztlaztl1512-bit.github.io/ABONAOAF3/" class="btn"><div class="icon-circle">📝</div><span>نموذج إكمال الجمل 1</span></a>
         <a href="https://aztlaztl1512-bit.github.io/EKMAL-3/" class="btn"><div class="icon-circle">🧪</div><span>نموذج إكمال الجمل 2</span></a>
         <a href="https://aztlaztl1512-bit.github.io/EKMAL-4/" class="btn"><div class="icon-circle">💡</div><span>نموذج إكمال الجمل 3</span></a>
         <a href="https://aztlaztl1512-bit.github.io/EKMAL-5/" class="btn"><div class="icon-circle">💻</div><span>نموذج إكمال الجمل 4</span></a>
         <a href="https://aztlaztl1512-bit.github.io/EKMAL-6/" class="btn"><div class="icon-circle">🏆</div><span>نموذج إكمال الجمل 5</span></a>
         <a href="https://aztlaztl1512-bit.github.io/EKMAL-7/" class="btn"><div class="icon-circle">📐</div><span>نموذج إكمال الجمل 6</span></a>
-        <a href="https://aztlaztl1512-bit.github.io/EKMAL-8/" class="btn"><div class="icon-circle">🧠</div><span>نموذج إكمال الجمل 7</span></a>
-<a href="https://aztlaztl1512-bit.github.io/EKMAL-9/" class="btn"><div class="icon-circle">🌎</div><span>نموذج إكمال الجمل 8</span></a>
-<a href="https://aztlaztl1512-bit.github.io/EKMAL-10/" class="btn"><div class="icon-circle">🎯</div><span>نموذج إكمال الجمل 9</span></a>
-<a href="https://aztlaztl1512-bit.github.io/EKMAL-11/" class="btn"><div class="icon-circle">🌟</div><span>نموذج إكمال الجمل 10</span></a>
-<a href="https://aztlaztl1512-bit.github.io/EKMAL-12/" class="btn"><div class="icon-circle">💡</div><span>نموذج إكمال الجمل 11</span></a>
-<a href="https://aztlaztl1512-bit.github.io/EKMAL-13/" class="btn"><div class="icon-circle">🚀</div><span>نموذج إكمال الجمل 12</span></a>
-<a href="https://aztlaztl1512-bit.github.io/EKMAL-14/" class="btn"><div class="icon-circle">💻</div><span>نموذج إكمال الجمل 13</span></a>
-<a href="https://aztlaztl1512-bit.github.io/EKMAL-15/" class="btn"><div class="icon-circle">🧠</div><span>نموذج إكمال الجمل 14</span></a>
-<a href="https://aztlaztl1512-bit.github.io/EKMAL-16/" class="btn"><div class="icon-circle">📝</div><span>نموذج إكمال الجمل 15</span></a>
+        <a href="https://aztlaztl1512-bit.github.io/EKMAL-8/" class="btn"><div class="icon-circle">🌎</div><span>نموذج إكمال الجمل 7</span></a>
+    </div>
+
+    <div id="error" class="model-list">
+        <a href="https://aztlaztl1512-bit.github.io/SEAQ-/" class="btn guide-pulse"><div class="icon-circle">💡</div><span>دليل القسم </span></a>
+        <a href="..." class="btn"><div class="icon-circle">❌</div><span>نموذج الخطأ السياقي 1</span></a>
+    </div>
+
+    <div id="reading" class="model-list">
+        <a href="https://aztlaztl1512-bit.github.io/ESTEAB-/" class="btn guide-pulse"><div class="icon-circle">💡</div><span>دليل القسم </span></a>
+        <a href="..." class="btn"><div class="icon-circle">📖</div><span>نموذج استيعاب المقروء 1</span></a>
     </div>
 
     <div class="footer-line" id="f-line">✨ أ / عبد العزيز الفيفي - ثانوية الأمير عبدالمجيد 🎓</div>
@@ -240,7 +237,7 @@
         }, 2000);
     })();
 
-    // النص المحدث لرفع الصور
+    // إقلاع البحث بالصور مع النص الجديد
     function launchAIPage() {
         window.open("https://www.google.com/search?q=تفضل+برفع+صورة+سؤالك+للمساعدة&sourceid=chrome&udm=50&aep=42", '_blank');
     }
@@ -261,8 +258,6 @@
         document.getElementById('searchBox').style.display = (tabId === 'ai-helper') ? 'none' : 'inline-block';
         searchModels();
     }
-
-    function lockNotice(s) { alert("🛡️ عذراً يا بطل..\nقسم (" + s + ") ستفتح قريبا بإذن الله."); }
 
     function searchModels() {
         let input = document.getElementById('searchBox').value.toLowerCase();
