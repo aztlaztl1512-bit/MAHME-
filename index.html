@@ -217,12 +217,12 @@
         </div>
 
         <div class="home-grid">
-            <div class="home-card card-analog" onclick="openTab('analog', 'التناظر اللفظي')"><span>🔗<br>1 - التناظر اللفظي</span></div>
-            <div class="home-card card-odd" onclick="openTab('odd', 'المفردة الشاذة والارتباط والاختلاف')"><span>🔍<br>2 - المفردة والارتباط</span></div>
-            <div class="home-card card-complete" onclick="openTab('complete', 'إكمال الجمل')"><span>📝<br>3 - إكمال الجمل</span></div>
-            <div class="home-card card-error" onclick="openTab('error', 'الخطأ في السياق')"><span>❌<br>4 - الخطأ في السياق</span></div>
-            <div class="home-card card-reading" onclick="openTab('reading', 'استيعاب المقروء')"><span>📖<br>5 - استيعاب المقروء</span></div>
-            <div class="home-card card-shamel" onclick="openTab('comprehensive', 'شامل اللفظي')"><span>📜<br>6 - شامل اللفظي</span></div>
+            <div class="home-card card-analog" onclick="openTab('analog', 'التناظر اللفظي')"><span>🔗<br> التناظر اللفظي</span></div>
+            <div class="home-card card-odd" onclick="openTab('odd', 'المفردة الشاذة والارتباط والاختلاف')"><span>🔍<br> المفردة والارتباط</span></div>
+            <div class="home-card card-complete" onclick="openTab('complete', 'إكمال الجمل')"><span>📝<br>  إكمال الجمل</span></div>
+            <div class="home-card card-error" onclick="openTab('error', 'الخطأ في السياق')"><span>❌<br>  الخطأ في السياق</span></div>
+            <div class="home-card card-reading" onclick="openTab('reading', 'استيعاب المقروء')"><span>📖<br>  استيعاب المقروء</span></div>
+            <div class="home-card card-shamel" onclick="openTab('comprehensive', 'شامل اللفظي')"><span>📜<br>  شامل اللفظي</span></div>
         </div>
     </div>
 
@@ -307,7 +307,7 @@
 
     <div id="complete" class="model-list">
         <a href="https://aztlaztl1512-bit.github.io/EKMAL-1/" class="btn guide-pulse"><div class="icon-circle">📝</div><span>دليل القسم </span></a>
-          <a href="https://aztlaztl1512-bit.github.io/ABONAOAF3/" class="btn"><div class="icon-circle">📝</div><span>نموذج إكمال الجمل 1</span></a>
+          <a href="https://aztlaztl1512-bit.github.io/EKMAL-2//" class="btn"><div class="icon-circle">📝</div><span>نموذج إكمال الجمل 1</span></a>
         <a href="https://aztlaztl1512-bit.github.io/EKMAL-3/" class="btn"><div class="icon-circle">🧪</div><span>نموذج إكمال الجمل 2</span></a>
         <a href="https://aztlaztl1512-bit.github.io/EKMAL-4/" class="btn"><div class="icon-circle">💡</div><span>نموذج إكمال الجمل 3</span></a>
         <a href="https://aztlaztl1512-bit.github.io/EKMAL-5/" class="btn"><div class="icon-circle">💻</div><span>نموذج إكمال الجمل 4</span></a>
@@ -364,6 +364,136 @@
             </div>
         </div>
     </div>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<style>
+  /* حاوية الشريط الرئيسية */
+  .ticker-wrapper {
+    direction: rtl;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 1000px; /* عرض مناسب للشاشات */
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #ffffff;
+    padding: 12px 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border: 2px solid #f0f0f0;
+    overflow: hidden; /* لإخفاء النص الخارج عن النطاق */
+  }
+
+  /* الأيقونة الأولى: زاد التميز */
+  .static-icon {
+    width: 60px;
+    height: 60px;
+    background: #3498db;
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+  }
+  .static-icon:hover { transform: scale(1.1); }
+
+  /* الأيقونة الثانية: عنوان الشريط */
+  .news-label {
+    background: #e67e22;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-size: 19px; 
+    font-weight: 900; /* خط عريض جداً */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
+  }
+
+  /* منطقة النص المتحرك */
+  .ticker-content {
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+  }
+
+  .ticker-text {
+    display: inline-block;
+    padding-right: 100%; /* بداية الحركة من الخارج */
+    animation: ticker 75s linear infinite; /* سرعة بطيئة جداً للقراءة */
+    color: #000000; /* أسود صريح لأعلى وضوح */
+    font-size: 21px; /* حجم خط كبير وواضح */
+    font-weight: 700;
+  }
+
+  /* حركة الشريط */
+  @keyframes ticker {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(100%, 0, 0); }
+  }
+
+  /* توقف الشريط عند تمرير الماوس للقراءة بتركيز */
+  .ticker-wrapper:hover .ticker-text {
+    animation-play-state: paused;
+  }
+
+  /* تنسيق العبارات التوضيحية داخل الشريط */
+  .highlight-blue { color: #3498db; }
+  .highlight-orange { color: #e67e22; }
+</style>
+</head>
+<body>
+
+<div class="ticker-wrapper">
+  <!-- الأيقونة الأولى (تفاعلية عند الضغط) -->
+  <div class="static-icon" title="اضغط للحصول على نصيحة سريعة" id="wisdom-icon">💡</div>
+
+  <!-- الأيقونة الثانية (عنوان الشريط) -->
+  <div class="news-label">🔔 تنبيهات التميز</div>
+
+  <!-- محتوى الشريط المتحرك -->
+  <div class="ticker-content">
+    <div class="ticker-text" id="ticker-text">
+       • <span class="highlight-blue">💡 نصيحة:</span> في استيعاب المقروء، قراءة الأسئلة قبل النص توفر لك الكثير من الوقت • 
+       <span class="highlight-orange">🚀 طريق الـ 100:</span> التميز ليس ذكاءً خارقاً، بل هو استمرار في التدريب وتعلّم من الأخطاء • 
+       <span class="highlight-blue">🔔 جديد:</span> تم رفع 50 سؤالاً جديداً في قسم (المفردة الشاذة) وفق أحدث تسريبات 2026 • 
+       <span class="highlight-orange">💡 تكتيك:</span> الكلمة التي لا يتغير معناها عند حذفها هي غالباً مفتاح حل الخطأ السياقي • 
+       <span class="highlight-blue">🚀 ثق بنفسك:</span> قدراتك العقلية تتطور مع كل نموذج تحله، لا تتوقف اليوم لتجني الثمار غداً • 
+       <span class="highlight-orange">🔔 هام:</span> تأكد من مراجعة حالة تسجيلك في موقع (قياس) قبل موعد اختبارك بـ 48 ساعة • 
+       <span class="highlight-blue">💡 تنبيه:</span> انتبه لاتجاه العلاقة في التناظر اللفظي؛ فالبداية من اليمين تختلف عن اليسار.
+    </div>
+  </div>
+</div>
+
+<script>
+  // قائمة نصائح سريعة تظهر عند الضغط على أيقونة المصباح
+  const phrases = [
+    "التركيز في قراءة رأس السؤال يوفر عليك نصف وقت الإجابة.",
+    "في التناظر اللفظي، ابحث عن العلاقة في الاتجاه الصحيح دائماً.",
+    "استبعاد الخيارات المستحيلة يزيد من فرصتك في الحل الصحيح.",
+    "الهدوء أثناء الاختبار هو سر الدرجات العليا.",
+    "التدريب اليومي هو السلاح الأقوى لتجاوز عقبة الوقت."
+  ];
+
+  document.getElementById('wisdom-icon').onclick = function() {
+    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+    alert("💡 زاد التميز: " + randomPhrase);
+  };
+</script>
+
+</body>
+</html>
 
     <div class="footer-section">
         <a href="https://t.me/+q1vxFtx7NOkxZjY0" class="telegram-btn" target="_blank">
