@@ -534,8 +534,127 @@ function updateHijriDate() {
 window.addEventListener('load', updateHijriDate);
 
 </script>
+    <style>
+    /* زر التبديل العائم */
+    .dark-mode-floating-btn {
+        position: fixed; 
+        top: 15px; 
+        left: 15px; 
+        z-index: 10005;
+        background: #2b6cb0; 
+        color: white; 
+        border: 2px solid #ffffff;
+        width: 45px; 
+        height: 45px; 
+        border-radius: 50%;
+        cursor: pointer; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        font-size: 22px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .dark-mode-floating-btn:hover { transform: scale(1.1); }
+
+    /* الحالة النشطة للوضع الليلي - تغطية شاملة */
+    .dark-mode-active { 
+        background-color: #121212 !important; 
+    }
+    
+    .dark-mode-active .container { 
+        background: rgba(18, 18, 18, 0.98) !important; 
+    }
+
+    /* إصلاح المربع العلوي ونصوص النبذة */
+    .dark-mode-active .home-intro,
+    .dark-mode-active .intro-box {
+        background-color: #1e1e1e !important;
+        border-color: #2b6cb0 !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important;
+    }
+    .dark-mode-active .intro-header h3,
+    .dark-mode-active h1,
+    .dark-mode-active .intro-content p,
+    .dark-mode-active .instruction-tag {
+        color: #ffffff !important;
+    }
+    .dark-mode-active .instruction-tag {
+        background: #2d3748 !important;
+        border: 1px solid #4a5568;
+    }
+
+    /* إصلاح شريط التنبيهات (Ticker) بالكامل */
+    .dark-mode-active .ticker-wrapper {
+        background-color: #1e1e1e !important;
+        border: 2px solid #333333 !important;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;
+    }
+    .dark-mode-active .ticker-text {
+        color: #ffffff !important; /* تحويل النص الأسود إلى أبيض */
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    .dark-mode-active .news-label {
+        background: #c05621 !important; /* لون برتقالي داكن يناسب الليل */
+    }
+    .dark-mode-active .static-icon {
+        background: #2c5282 !important;
+    }
+
+    /* إصلاح الكروت والإحصائيات */
+    .dark-mode-active .home-card, 
+    .dark-mode-active .btn,
+    .dark-mode-active .stats-bar {
+        background-color: #1e1e1e !important;
+        border-color: #333333 !important;
+        color: #ffffff !important;
+    }
+    .dark-mode-active .stat-number { color: #63b3ed !important; }
+    .dark-mode-active .stat-label { color: #a0aec0 !important; }
+    .dark-mode-active .home-card span, .dark-mode-active .btn span { color: #ffffff !important; }
+
+    /* إصلاح صندوق البحث والمساعد الذكي */
+    .dark-mode-active #searchBox,
+    .dark-mode-active #ai-query,
+    .dark-mode-active #ai-helper div {
+        background: #2d2d2d !important;
+        color: #ffffff !important;
+        border-color: #444444 !important;
+    }
+</style>
+
+<button class="dark-mode-floating-btn" onclick="applyDarkMode()" id="theme-switcher">🌙</button>
+
+<script>
+    function applyDarkMode() {
+        const bodyElement = document.body;
+        const themeBtn = document.getElementById('theme-switcher');
+        
+        // تبديل الفئة (Class)
+        bodyElement.classList.toggle('dark-mode-active');
+        
+        // تغيير شكل الزر وحفظ الحالة
+        if (bodyElement.classList.contains('dark-mode-active')) {
+            themeBtn.innerText = '☀️';
+            themeBtn.style.background = '#ed8936';
+            localStorage.setItem('qudrat-theme', 'dark');
+        } else {
+            themeBtn.innerText = '🌙';
+            themeBtn.style.background = '#2b6cb0';
+            localStorage.setItem('qudrat-theme', 'light');
+        }
+    }
+
+    // كود إضافي: حفظ اختيار الطالب حتى لو أغلق الصفحة
+    window.addEventListener('DOMContentLoaded', (event) => {
+        if (localStorage.getItem('qudrat-theme') === 'dark') {
+            applyDarkMode();
+        }
+    });
+</script>
 </body>
 </html>
+
 
 
 
