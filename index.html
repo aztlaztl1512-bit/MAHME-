@@ -169,7 +169,7 @@
         .ticker-content { flex-grow: 1; overflow: hidden; white-space: nowrap; display: flex; align-items: center; }
         .ticker-text {
             display: inline-block; padding-right: 100%;
-            animation: ticker 95s linear infinite; /* تم الضبط على 95 ثانية بالضبط */
+            animation: ticker 40s linear infinite; /* تم الضبط على 40 ثانية بالضبط */
             color: #000000; font-size: 21px; font-weight: 700;
         }
         @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(100%, 0, 0); } }
@@ -198,8 +198,7 @@
             <div class="intro-box">
                 <div class="intro-header"><span class="icon">✨</span><h3>نبذة عن المنصة والقدرات اللفظية</h3></div>
                 <div class="intro-content">
-                    <p>أهلاً بك في <b style="color: var(--primary); font-size: 1.1rem;">منصة التميز الرقمية</b>، بوابتك الموثوقة نحو التفوق في <b style="color: var(--primary); font-size: 1.1rem;">القسم اللفظي</b></p>
-                    <p>تم تطوير هذا المحتوى ليكون رفيقك الذكي في رحلة الاستعداد لاختبار القدرات، حيث نجمع لك أحدث النماذج التفاعلية والشروحات المبسطة التي تحاكي الواقع وتكسر حاجز الرهبة، لتصل إلى الدرجة التي تطمح إليها بكل ثقة.</p></p>
+                    <p>أهلاً بك في <strong>منصة التميز الرقمية</strong>، بوابتك الموثوقة نحو التفوق في <strong>القسم اللفظي</strong>. تم تطوير هذا المحتوى ليكون رفيقك الذكي في رحلة الاستعداد لاختبار القدرات، حيث نجمع لك أحدث النماذج التفاعلية والشروحات المبسطة التي تحاكي الواقع وتكسر حاجز الرهبة، لتصل إلى الدرجة التي تطمح إليها بكل ثقة.</p>
                 </div>
             </div>
             <div style="margin-top:15px; text-align:center;">
@@ -212,7 +211,7 @@
         <div class="stats-bar">
             <div class="stat-item"><span class="stat-number">120+</span><span class="stat-label">نموذج محدث</span></div>
             <div class="stat-item" onclick="openDailyChallenge()">
-                <div class="challenge-circle"><i>🏆</i><span>تحدي اليوم</span></div>
+                <div class="challenge-circle"><i>🏆</i><span id="hijri-date">تحدي اليوم</span></div>
             </div>
             <div class="stat-item" onclick="openTab('ai-helper', 'مساعدك للتأكد من السؤال')">
                 <span class="top-siren">🤖</span>
@@ -407,18 +406,7 @@
         <div class="news-label">🔔 تنبيهات التميز</div>
         <div class="ticker-content">
             <div class="ticker-text" id="ticker-text">
-                <span class="highlight-green">🔔 تحديث 2026:</span> تم رفع +50 نموذجاً جديداً كلياً وفق أحدث تسريبات هذا العام 🆕 • 
-    <span class="highlight-red">⚠️ تنبيه هام:</span> راجع حالة تسجيلك في موقع (قياس) قبل موعد اختبارك بـ 48 ساعة على الأقل •
- <span class="highlight-orange">🚀 طريق الـ 100:</span> التميز ليس ذكاءً فطرياً، بل هو "نفس طويل" وتدريب مستمر على الأخطاء • 
-    <span class="highlight-blue">🧠 تطوير:</span> قدراتك تتضاعف مع كل نموذج تحله.. استمر اليوم لتقطف الثمار غداً • 
-    <span class="highlight-orange">📚 الحصيلة اللغوية:</span> ركز على المفردات الجزلة والكلمات المتكررة في نماذج المحوسب • 
-    <span class="highlight-blue">⚡ سرعة الحل:</span> تدرب على القراءة الصامتة (بالعين) لتزيد من سرعة إنجازك في الاختبار •
- <span class="highlight-blue">💡 نصيحة ذكية:</span> في استيعاب المقروء، قراءة الأسئلة أولاً هي مفتاحك لكسب الوقت ⏱️ • 
-    <span class="highlight-orange">🎯 تكتيك:</span> الكلمة الزائدة أو التي لا يتغير المعنى بحذفها غالباً ما تكون مفتاح حل الخطأ السياقي • 
-    <span class="highlight-blue">🔗 التناظر اللفظي:</span> حدد "العلاقة" أولاً ثم ابنِ جملتك المنطقية، وانتبه جيداً لاتجاهها ⬅️ • 
-    <span class="highlight-orange">✍️ إكمال الجمل:</span> لا تغرك الكلمة الأولى، التناسق الكلي للجملة هو معيارك الصحيح • 
-    <span class="highlight-blue">🔍 الخطأ السياقي:</span> ابحث عن الكلمة التي "تفسد" المنطق، وغالباً ما يكون تصحيحها هو (عكسها) •
-       <span class="highlight-blue">💡 تنبيه:</span> انتبه لاتجاه العلاقة في التناظر اللفظي؛ فالبداية من اليمين تختلف عن اليسار. 
+                🔔 تحديث 2026: تم رفع نماذج جديدة كلياً • راجع حالة تسجيلك في قياس • التميز ليس ذكاءً بل تدريب مستمر • 
             </div>
         </div>
     </div>
@@ -434,7 +422,7 @@
     const dailyLinks = [
         "https://aztlaztl1512-bit.github.io/Zzz-1/", 
         "https://aztlaztl1512-bit.github.io/Zzz-2/", 
-       https://aztlaztl1512-bit.github.io/Zzz-3/, 
+        "https://aztlaztl1512-bit.github.io/Zzz-3/", 
         "https://aztlaztl1512-bit.github.io/Zzz-4/", 
         "https://aztlaztl1512-bit.github.io/Zzz-5/", 
         "https://aztlaztl1512-bit.github.io/Zzz-6/", 
@@ -518,132 +506,27 @@
         alert("💡 زاد التميز: " + phrases[Math.floor(Math.random() * phrases.length)]);
     };
 </script>
-<style>
-    /* زر التبديل العائم */
-    .dark-mode-floating-btn {
-        position: fixed; 
-        top: 15px; 
-        left: 15px; 
-        z-index: 10005;
-        background: #2b6cb0; 
-        color: white; 
-        border: 2px solid #ffffff;
-        width: 45px; 
-        height: 45px; 
-        border-radius: 50%;
-        cursor: pointer; 
-        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        font-size: 22px; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .dark-mode-floating-btn:hover { transform: scale(1.1); }
-
-    /* الحالة النشطة للوضع الليلي - تغطية شاملة */
-    .dark-mode-active { 
-        background-color: #121212 !important; 
-    }
+// وظيفة لعرض التاريخ الهجري
+function updateHijriDate() {
+    const today = new Date();
+    // تنسيق التاريخ بالتقويم الهجري
+    const options = { 
+        day: 'numeric', 
+        month: 'long', 
+        calendar: 'islamic-umalqura', 
+        numberingSystem: 'arabic' 
+    };
+    const hijriDate = new Intl.DateTimeFormat('ar-SA', options).format(today);
     
-    .dark-mode-active .container { 
-        background: rgba(18, 18, 18, 0.98) !important; 
+    // تحديث النص في الدائرة
+    const dateElement = document.getElementById('hijri-date');
+    if (dateElement) {
+        dateElement.innerText = hijriDate;
+        dateElement.style.fontSize = "0.65rem"; // تصغير الخط قليلاً ليتناسب مع المساحة
     }
+}
 
-    /* إصلاح المربع العلوي ونصوص النبذة */
-    .dark-mode-active .home-intro,
-    .dark-mode-active .intro-box {
-        background-color: #1e1e1e !important;
-        border-color: #2b6cb0 !important;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important;
-    }
-    .dark-mode-active .intro-header h3,
-    .dark-mode-active h1,
-    .dark-mode-active .intro-content p,
-    .dark-mode-active .instruction-tag {
-        color: #ffffff !important;
-    }
-    .dark-mode-active .instruction-tag {
-        background: #2d3748 !important;
-        border: 1px solid #4a5568;
-    }
-
-    /* إصلاح شريط التنبيهات (Ticker) بالكامل */
-    .dark-mode-active .ticker-wrapper {
-        background-color: #1e1e1e !important;
-        border: 2px solid #333333 !important;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;
-    }
-    .dark-mode-active .ticker-text {
-        color: #ffffff !important; /* تحويل النص الأسود إلى أبيض */
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-    }
-    .dark-mode-active .news-label {
-        background: #c05621 !important; /* لون برتقالي داكن يناسب الليل */
-    }
-    .dark-mode-active .static-icon {
-        background: #2c5282 !important;
-    }
-
-    /* إصلاح الكروت والإحصائيات */
-    .dark-mode-active .home-card, 
-    .dark-mode-active .btn,
-    .dark-mode-active .stats-bar {
-        background-color: #1e1e1e !important;
-        border-color: #333333 !important;
-        color: #ffffff !important;
-    }
-    .dark-mode-active .stat-number { color: #63b3ed !important; }
-    .dark-mode-active .stat-label { color: #a0aec0 !important; }
-    .dark-mode-active .home-card span, .dark-mode-active .btn span { color: #ffffff !important; }
-
-    /* إصلاح صندوق البحث والمساعد الذكي */
-    .dark-mode-active #searchBox,
-    .dark-mode-active #ai-query,
-    .dark-mode-active #ai-helper div {
-        background: #2d2d2d !important;
-        color: #ffffff !important;
-        border-color: #444444 !important;
-    }
-</style>
-
-<button class="dark-mode-floating-btn" onclick="applyDarkMode()" id="theme-switcher">🌙</button>
-
-<script>
-    function applyDarkMode() {
-        const bodyElement = document.body;
-        const themeBtn = document.getElementById('theme-switcher');
-        
-        // تبديل الفئة (Class)
-        bodyElement.classList.toggle('dark-mode-active');
-        
-        // تغيير شكل الزر وحفظ الحالة
-        if (bodyElement.classList.contains('dark-mode-active')) {
-            themeBtn.innerText = '☀️';
-            themeBtn.style.background = '#ed8936';
-            localStorage.setItem('qudrat-theme', 'dark');
-        } else {
-            themeBtn.innerText = '🌙';
-            themeBtn.style.background = '#2b6cb0';
-            localStorage.setItem('qudrat-theme', 'light');
-        }
-    }
-
-    // كود إضافي: حفظ اختيار الطالب حتى لو أغلق الصفحة
-    window.addEventListener('DOMContentLoaded', (event) => {
-        if (localStorage.getItem('qudrat-theme') === 'dark') {
-            applyDarkMode();
-        }
-    });
-</script>
+// استدعاء الوظيفة عند تحميل الصفحة
+window.addEventListener('load', updateHijriDate);
 </body>
 </html>
-
-
-
-
-
-
-
-
-
