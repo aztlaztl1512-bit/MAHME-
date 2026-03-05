@@ -11,6 +11,8 @@
             --border-gray: #cbd5e0;
             --bg-soft: #f0f4f8;
             --gold: #d4af37;
+            --gold-soft: #fcf4d8; 
+            --gold-border: #e9d18b; 
             --locked-gray: #a0aec0;
             --grad-primary: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
         }
@@ -47,11 +49,30 @@
             display: flex; justify-content: space-around; flex-wrap: wrap;
             background: white; padding: 15px; border-radius: 20px;
             margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-bottom: 4px solid var(--primary); align-items: flex-end;
+            border-bottom: 4px solid var(--primary); align-items: center;
         }
         .stat-item { padding: 5px; min-width: 100px; text-align: center; cursor: pointer; }
         .stat-number { display: block; font-size: 1.5rem; font-weight: 800; color: var(--primary); }
         .stat-label { font-size: 0.8rem; color: #718096; font-weight: bold; }
+
+        /* أيقونة تحدي اليوم الحيوية (تقرب وتبعد) */
+        .challenge-circle {
+            width: 75px; height: 75px; border-radius: 50%;
+            background: var(--gold-soft);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            transition: 0.4s; cursor: pointer; border: 2px solid var(--gold-border);
+            animation: lively-zoom 2s infinite ease-in-out;
+        }
+        .challenge-circle:hover { background: #fff; animation-play-state: paused; }
+        .challenge-circle span { color: #8a6d3b; font-size: 0.75rem; font-weight: 800; }
+        .challenge-circle i { font-size: 1.6rem; margin-bottom: 2px; font-style: normal; }
+
+        @keyframes lively-zoom {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
+            50% { transform: scale(1.15); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
+        }
 
         .top-siren {
             display: inline-block; font-size: 1.5rem; margin-bottom: 5px;
@@ -65,7 +86,6 @@
             gap: 15px; padding: 10px;
         }
 
-        /* المربعات الملونة مع تأثير الوميض الهادئ */
         .home-card {
             background: white; min-height: 130px; padding: 15px; border-radius: 20px;
             border: 2px solid transparent; cursor: pointer; transition: 0.4s;
@@ -89,7 +109,6 @@
         .card-reading { border-color: #38b2ac; color: #2c7a7b; }
         .card-shamel { border-color: #667eea; color: #4c51bf; }
 
-        /* نبض الأدلة الذهبي القوي والمستمر */
         .guide-pulse {
             animation: urgent-gold-pulse 1.5s infinite !important;
             border: 3px solid var(--gold) !important;
@@ -118,6 +137,43 @@
 
         #searchBox { width: 100%; max-width: 500px; padding: 12px; margin-bottom: 20px; border: 2px solid var(--primary); border-radius: 15px; text-align: center; display: none; margin: 0 auto 20px auto; }
         
+        .intro-box {
+            background-color: #ffffff; border-radius: 15px; padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-right: 5px solid #2b6cb0;
+            direction: rtl; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8; max-width: 800px; margin: 20px auto;
+        }
+        .intro-header { display: flex; align-items: center; margin-bottom: 15px; }
+        .intro-header h3 { color: #333; margin: 0; font-size: 1.4rem; font-weight: bold; }
+        .intro-header .icon { font-size: 1.5rem; margin-left: 10px; }
+        .intro-content p { color: #555; font-size: 1.1rem; margin: 0; text-align: justify; }
+
+        .ticker-wrapper {
+            direction: rtl; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px; margin: 20px auto; display: flex;
+            align-items: center; gap: 15px; background: #ffffff;
+            padding: 12px 20px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 2px solid #f0f0f0; overflow: hidden;
+        }
+        .static-icon {
+            width: 60px; height: 60px; background: #3498db; color: white;
+            border-radius: 12px; display: flex; align-items: center;
+            justify-content: center; font-size: 30px; flex-shrink: 0;
+            cursor: pointer; transition: transform 0.3s ease;
+        }
+        .news-label {
+            background: #e67e22; color: white; padding: 10px 22px;
+            border-radius: 10px; font-size: 19px; font-weight: 900;
+            display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+        }
+        .ticker-content { flex-grow: 1; overflow: hidden; white-space: nowrap; display: flex; align-items: center; }
+        .ticker-text {
+            display: inline-block; padding-right: 100%;
+            animation: ticker 40s linear infinite; /* تم الضبط على 40 ثانية بالضبط */
+            color: #000000; font-size: 21px; font-weight: 700;
+        }
+        @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(100%, 0, 0); } }
+
         .footer-section { margin-top: 50px; border-top: 1px solid #ddd; padding-top: 25px; }
         .telegram-btn {
             display: inline-flex; align-items: center; gap: 10px;
@@ -139,66 +195,12 @@
 
     <div id="home-page">
         <div class="home-intro">
-            <!-- تنسيق صندوق النبذة -->
-<div class="intro-box">
-    <div class="intro-header">
-        <span class="icon">✨</span>
-        <h3>نبذة عن المنصة والقدرات اللفظية</h3>
-    </div>
-    <div class="intro-content">
-        <p>
-            أهلاً بك في <strong>منصة التميز الرقمية</strong>، بوابتك الموثوقة نحو التفوق في <strong>القسم اللفظي</strong>. 
-            تم تطوير هذا المحتوى ليكون رفيقك الذكي في رحلة الاستعداد لاختبار القدرات، 
-            حيث نجمع لك أحدث النماذج التفاعلية والشروحات المبسطة التي تحاكي الواقع وتكسر حاجز الرهبة، 
-            لتصل إلى الدرجة التي تطمح إليها بكل ثقة.
-        </p>
-    </div>
-</div>
-
-<style>
-    .intro-box {
-        background-color: #ffffff;
-        border-radius: 15px;
-        padding: 25px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        border-right: 5px solid #2b6cb0; /* لون هوية المنصة */
-        direction: rtl; /* اتجاه النص من اليمين لليسار */
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        line-height: 1.8;
-        max-width: 800px;
-        margin: 20px auto;
-    }
-
-    .intro-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-    }
-
-    .intro-header h3 {
-        color: #333;
-        margin: 0;
-        font-size: 1.4rem;
-        font-weight: bold;
-    }
-
-    .intro-header .icon {
-        font-size: 1.5rem;
-        margin-left: 10px;
-    }
-
-    .intro-content p {
-        color: #555;
-        font-size: 1.1rem;
-        margin: 0;
-        text-align: justify;
-    }
-
-    .intro-content strong {
-        color: #2b6cb0; /* تمييز الكلمات المهمة بلون مختلف */
-    }
-</style>
-
+            <div class="intro-box">
+                <div class="intro-header"><span class="icon">✨</span><h3>نبذة عن المنصة والقدرات اللفظية</h3></div>
+                <div class="intro-content">
+                    <p>أهلاً بك في <strong>منصة التميز الرقمية</strong>، بوابتك الموثوقة نحو التفوق في <strong>القسم اللفظي</strong>. تم تطوير هذا المحتوى ليكون رفيقك الذكي في رحلة الاستعداد لاختبار القدرات، حيث نجمع لك أحدث النماذج التفاعلية والشروحات المبسطة التي تحاكي الواقع وتكسر حاجز الرهبة، لتصل إلى الدرجة التي تطمح إليها بكل ثقة.</p>
+                </div>
+            </div>
             <div style="margin-top:15px; text-align:center;">
                 <span class="instruction-tag" style="background:#e3f2fd; color:#1e88e5;">💡 ابدأ بدليل القسم أولاً</span>
                 <span class="instruction-tag" style="background:#e8f5e9; color:#43a047;">🎯 تدرب على النماذج يومياً</span>
@@ -208,21 +210,23 @@
 
         <div class="stats-bar">
             <div class="stat-item"><span class="stat-number">120+</span><span class="stat-label">نموذج محدث</span></div>
-            <div class="stat-item"><span class="stat-number">100%</span><span class="stat-label">محاكاة للواقع</span></div>
+            <div class="stat-item" onclick="openDailyChallenge()">
+                <div class="challenge-circle"><i>🏆</i><span>تحدي اليوم</span></div>
+            </div>
             <div class="stat-item" onclick="openTab('ai-helper', 'مساعدك للتأكد من السؤال')">
                 <span class="top-siren">🤖</span>
                 <span class="stat-number">24/7</span>
-                <span class="stat-label">اضغط ( هنا )المساعد الذكي يفهمك دائماً</span>
+                <span class="stat-label">المساعد الذكي</span>
             </div>
         </div>
 
         <div class="home-grid">
             <div class="home-card card-analog" onclick="openTab('analog', 'التناظر اللفظي')"><span>🔗<br> التناظر اللفظي</span></div>
-            <div class="home-card card-odd" onclick="openTab('odd', 'المفردة الشاذة والارتباط والاختلاف')"><span>🔍<br> المفردة والارتباط</span></div>
-            <div class="home-card card-complete" onclick="openTab('complete', 'إكمال الجمل')"><span>📝<br>  إكمال الجمل</span></div>
-            <div class="home-card card-error" onclick="openTab('error', 'الخطأ في السياق')"><span>❌<br>  الخطأ في السياق</span></div>
-            <div class="home-card card-reading" onclick="openTab('reading', 'استيعاب المقروء')"><span>📖<br>  استيعاب المقروء</span></div>
-            <div class="home-card card-shamel" onclick="openTab('comprehensive', 'شامل اللفظي')"><span>📜<br>  شامل اللفظي</span></div>
+            <div class="home-card card-odd" onclick="openTab('odd', 'المفردة والارتباط')"><span>🔍<br> المفردة والارتباط</span></div>
+            <div class="home-card card-complete" onclick="openTab('complete', 'إكمال الجمل')"><span>📝<br> إكمال الجمل</span></div>
+            <div class="home-card card-error" onclick="openTab('error', 'الخطأ في السياق')"><span>❌<br> الخطأ في السياق</span></div>
+            <div class="home-card card-reading" onclick="openTab('reading', 'استيعاب المقروء')"><span>📖<br> استيعاب المقروء</span></div>
+            <div class="home-card card-shamel" onclick="openTab('comprehensive', 'شامل اللفظي')"><span>📜<br> شامل اللفظي</span></div>
         </div>
     </div>
 
@@ -385,7 +389,6 @@
 <a href="https://aztlaztl1512-bit.github.io/SAML-19" class="btn"><div class="icon-circle">📐</div><span>نموذج شامل لفظي 19</span></a>
 <a href="https://aztlaztl1512-bit.github.io/SAML-20" class="btn"><div class="icon-circle">🔗</div><span>نموذج شامل لفظي 20</span></a>
     </div>
-
     <div id="ai-helper" class="model-list" style="grid-template-columns: 1fr;">
         <div style="background: white; padding: 30px; border-radius: 25px; border: 2px dashed var(--primary);">
             <h2 style="color: var(--primary);">🤖 مساعدك للتأكد من السؤال</h2>
@@ -397,162 +400,52 @@
             </div>
         </div>
     </div>
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-<meta charset="UTF-8">
-<style>
-  /* حاوية الشريط الرئيسية */
-  .ticker-wrapper {
-    direction: rtl;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    max-width: 1000px; /* عرض مناسب للشاشات */
-    margin: 20px auto;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background: #ffffff;
-    padding: 12px 20px;
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    border: 2px solid #f0f0f0;
-    overflow: hidden; /* لإخفاء النص الخارج عن النطاق */
-  }
 
-  /* الأيقونة الأولى: زاد التميز */
-  .static-icon {
-    width: 60px;
-    height: 60px;
-    background: #3498db;
-    color: white;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    flex-shrink: 0;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
-  }
-  .static-icon:hover { transform: scale(1.1); }
-
-  /* الأيقونة الثانية: عنوان الشريط */
-  .news-label {
-    background: #e67e22;
-    color: white;
-    padding: 10px 22px;
-    border-radius: 10px;
-    font-size: 19px; 
-    font-weight: 900; /* خط عريض جداً */
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(230, 126, 34, 0.3);
-  }
-
-  /* منطقة النص المتحرك */
-  .ticker-content {
-    flex-grow: 1;
-    overflow: hidden;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-  }
-
-  .ticker-text {
-    display: inline-block;
-    padding-right: 100%; /* بداية الحركة من الخارج */
-    animation: ticker 90s linear infinite; /* سرعة بطيئة جداً للقراءة */
-    color: #000000; /* أسود صريح لأعلى وضوح */
-    font-size: 21px; /* حجم خط كبير وواضح */
-    font-weight: 700;
-  }
-
-  /* حركة الشريط */
-  @keyframes ticker {
-    0% { transform: translate3d(0, 0, 0); }
-    100% { transform: translate3d(100%, 0, 0); }
-  }
-
-  /* توقف الشريط عند تمرير الماوس للقراءة بتركيز */
-  .ticker-wrapper:hover .ticker-text {
-    animation-play-state: paused;
-  }
-
-  /* تنسيق العبارات التوضيحية داخل الشريط */
-  .highlight-blue { color: #3498db; }
-  .highlight-orange { color: #e67e22; }
-</style>
-</head>
-<body>
-
-<div class="ticker-wrapper">
-  <!-- الأيقونة الأولى (تفاعلية عند الضغط) -->
-  <div class="static-icon" title="اضغط للحصول على نصيحة سريعة" id="wisdom-icon">💡</div>
-
-  <!-- الأيقونة الثانية (عنوان الشريط) -->
-  <div class="news-label">🔔 تنبيهات التميز</div>
-
-  <!-- محتوى الشريط المتحرك -->
-  <div class="ticker-content">
-    <div class="ticker-text" id="ticker-text">
-         <span class="highlight-green">🔔 تحديث 2026:</span> تم رفع +50 نموذجاً جديداً كلياً وفق أحدث تسريبات هذا العام 🆕 • 
-    <span class="highlight-red">⚠️ تنبيه هام:</span> راجع حالة تسجيلك في موقع (قياس) قبل موعد اختبارك بـ 48 ساعة على الأقل •
- <span class="highlight-orange">🚀 طريق الـ 100:</span> التميز ليس ذكاءً فطرياً، بل هو "نفس طويل" وتدريب مستمر على الأخطاء • 
-    <span class="highlight-blue">🧠 تطوير:</span> قدراتك تتضاعف مع كل نموذج تحله.. استمر اليوم لتقطف الثمار غداً • 
-    <span class="highlight-orange">📚 الحصيلة اللغوية:</span> ركز على المفردات الجزلة والكلمات المتكررة في نماذج المحوسب • 
-    <span class="highlight-blue">⚡ سرعة الحل:</span> تدرب على القراءة الصامتة (بالعين) لتزيد من سرعة إنجازك في الاختبار •
- <span class="highlight-blue">💡 نصيحة ذكية:</span> في استيعاب المقروء، قراءة الأسئلة أولاً هي مفتاحك لكسب الوقت ⏱️ • 
-    <span class="highlight-orange">🎯 تكتيك:</span> الكلمة الزائدة أو التي لا يتغير المعنى بحذفها غالباً ما تكون مفتاح حل الخطأ السياقي • 
-    <span class="highlight-blue">🔗 التناظر اللفظي:</span> حدد "العلاقة" أولاً ثم ابنِ جملتك المنطقية، وانتبه جيداً لاتجاهها ⬅️ • 
-    <span class="highlight-orange">✍️ إكمال الجمل:</span> لا تغرك الكلمة الأولى، التناسق الكلي للجملة هو معيارك الصحيح • 
-    <span class="highlight-blue">🔍 الخطأ السياقي:</span> ابحث عن الكلمة التي "تفسد" المنطق، وغالباً ما يكون تصحيحها هو (عكسها) •
-       <span class="highlight-blue">💡 تنبيه:</span> انتبه لاتجاه العلاقة في التناظر اللفظي؛ فالبداية من اليمين تختلف عن اليسار.
+    <div class="ticker-wrapper">
+        <div class="static-icon" id="wisdom-icon">💡</div>
+        <div class="news-label">🔔 تنبيهات التميز</div>
+        <div class="ticker-content">
+            <div class="ticker-text" id="ticker-text">
+                🔔 تحديث 2026: تم رفع نماذج جديدة كلياً • راجع حالة تسجيلك في قياس • التميز ليس ذكاءً بل تدريب مستمر • 
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-
-<script>
-  // قائمة نصائح سريعة تظهر عند الضغط على أيقونة المصباح
-  const phrases = [
-    "التركيز في قراءة رأس السؤال يوفر عليك نصف وقت الإجابة.",
-    "في التناظر اللفظي، ابحث عن العلاقة في الاتجاه الصحيح دائماً.",
-    "استبعاد الخيارات المستحيلة يزيد من فرصتك في الحل الصحيح.",
-    "الهدوء أثناء الاختبار هو سر الدرجات العليا.",
-    "التدريب اليومي هو السلاح الأقوى لتجاوز عقبة الوقت."
-  ];
-
-  document.getElementById('wisdom-icon').onclick = function() {
-    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-    alert("💡 زاد التميز: " + randomPhrase);
-  };
-</script>
-
-</body>
-</html>
 
     <div class="footer-section">
-        <a href="https://t.me/+q1vxFtx7NOkxZjY0" class="telegram-btn" target="_blank">
-            <span>🔹 انضم لقناتنا على التلجرام</span>
-        </a>
+        <a href="https://t.me/+q1vxFtx7NOkxZjY0" class="telegram-btn" target="_blank"><span>🔹 انضم لقناتنا على التلجرام</span></a>
         <div class="footer-line" id="f-line">✨ أ / عبد العزيز الفيفي - ثانوية الأمير عبدالمجيد 🎓</div>
     </div>
 </div>
 
 <script>
-    let navigationHistory = [];
+    // روابط التحدي السبعة
+    const dailyLinks = [
+        "https://aztlaztl1512-bit.github.io/Zzz/", 
+        "https://aztlaztl1512-bit.github.io/Zzz/", 
+        "https://aztlaztl1512-bit.github.io/Zzz/", 
+        "https://aztlaztl1512-bit.github.io/Zzz/", 
+        "https://aztlaztl1512-bit.github.io/Zzz/", 
+        "https://aztlaztl1512-bit.github.io/Zzz/", 
+        "https://aztlaztl1512-bit.github.io/Zzz/"
+    ];
 
+    function openDailyChallenge() {
+        const now = new Date();
+        const start = new Date(now.getFullYear(), 0, 0);
+        const diff = now - start;
+        const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const index = dayOfYear % dailyLinks.length;
+        window.open(dailyLinks[index], "_blank");
+    }
+
+    let navigationHistory = [];
     function animateCards() {
-        const cards = document.querySelectorAll('.home-card');
-        cards.forEach((card, index) => {
-            setTimeout(() => {
-                card.classList.add('show');
-            }, index * 100);
+        document.querySelectorAll('.home-card').forEach((card, index) => {
+            setTimeout(() => { card.classList.add('show'); }, index * 100);
         });
     }
 
+    // برمجية الحماية لضمان الحقوق
     (function protect() {
         const sig = "✨ أ / عبد العزيز الفيفي - ثانوية الأمير عبدالمجيد 🎓";
         setInterval(() => {
@@ -566,8 +459,7 @@
 
     function openTab(tabId, btnText) {
         document.getElementById('home-page').style.display = 'none';
-        let lists = document.getElementsByClassName('model-list');
-        for (let list of lists) { list.classList.remove('active'); }
+        document.querySelectorAll('.model-list').forEach(l => l.classList.remove('active'));
         document.getElementById(tabId).classList.add('active');
         document.getElementById('nav-btns').style.display = 'flex';
         document.getElementById('section-title').innerText = btnText;
@@ -580,8 +472,7 @@
             navigationHistory.pop();
             if (navigationHistory.length === 0) {
                 document.getElementById('home-page').style.display = 'block';
-                let lists = document.getElementsByClassName('model-list');
-                for (let list of lists) { list.classList.remove('active'); }
+                document.querySelectorAll('.model-list').forEach(l => l.classList.remove('active'));
                 document.getElementById('nav-btns').style.display = 'none';
                 document.getElementById('searchBox').style.display = 'none';
                 animateCards();
@@ -606,10 +497,132 @@
         if(!activeList) return;
         let items = activeList.getElementsByTagName('a');
         for (let i = 0; i < items.length; i++) {
-            let text = items[i].innerText.toLowerCase();
-            items[i].style.display = text.includes(input) ? "flex" : "none";
+            items[i].style.display = items[i].innerText.toLowerCase().includes(input) ? "flex" : "none";
         }
     }
+
+    document.getElementById('wisdom-icon').onclick = function() {
+        const phrases = ["التركيز هو مفتاح الحل.", "استبعد الإجابات الخاطئة أولاً.", "ثق بنفسك دائماً."];
+        alert("💡 زاد التميز: " + phrases[Math.floor(Math.random() * phrases.length)]);
+    };
+</script>
+<style>
+    /* زر التبديل العائم */
+    .dark-mode-floating-btn {
+        position: fixed; 
+        top: 15px; 
+        left: 15px; 
+        z-index: 10005;
+        background: #2b6cb0; 
+        color: white; 
+        border: 2px solid #ffffff;
+        width: 45px; 
+        height: 45px; 
+        border-radius: 50%;
+        cursor: pointer; 
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        font-size: 22px; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .dark-mode-floating-btn:hover { transform: scale(1.1); }
+
+    /* الحالة النشطة للوضع الليلي - تغطية شاملة */
+    .dark-mode-active { 
+        background-color: #121212 !important; 
+    }
+    
+    .dark-mode-active .container { 
+        background: rgba(18, 18, 18, 0.98) !important; 
+    }
+
+    /* إصلاح المربع العلوي ونصوص النبذة */
+    .dark-mode-active .home-intro,
+    .dark-mode-active .intro-box {
+        background-color: #1e1e1e !important;
+        border-color: #2b6cb0 !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important;
+    }
+    .dark-mode-active .intro-header h3,
+    .dark-mode-active h1,
+    .dark-mode-active .intro-content p,
+    .dark-mode-active .instruction-tag {
+        color: #ffffff !important;
+    }
+    .dark-mode-active .instruction-tag {
+        background: #2d3748 !important;
+        border: 1px solid #4a5568;
+    }
+
+    /* إصلاح شريط التنبيهات (Ticker) بالكامل */
+    .dark-mode-active .ticker-wrapper {
+        background-color: #1e1e1e !important;
+        border: 2px solid #333333 !important;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.4) !important;
+    }
+    .dark-mode-active .ticker-text {
+        color: #ffffff !important; /* تحويل النص الأسود إلى أبيض */
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+    .dark-mode-active .news-label {
+        background: #c05621 !important; /* لون برتقالي داكن يناسب الليل */
+    }
+    .dark-mode-active .static-icon {
+        background: #2c5282 !important;
+    }
+
+    /* إصلاح الكروت والإحصائيات */
+    .dark-mode-active .home-card, 
+    .dark-mode-active .btn,
+    .dark-mode-active .stats-bar {
+        background-color: #1e1e1e !important;
+        border-color: #333333 !important;
+        color: #ffffff !important;
+    }
+    .dark-mode-active .stat-number { color: #63b3ed !important; }
+    .dark-mode-active .stat-label { color: #a0aec0 !important; }
+    .dark-mode-active .home-card span, .dark-mode-active .btn span { color: #ffffff !important; }
+
+    /* إصلاح صندوق البحث والمساعد الذكي */
+    .dark-mode-active #searchBox,
+    .dark-mode-active #ai-query,
+    .dark-mode-active #ai-helper div {
+        background: #2d2d2d !important;
+        color: #ffffff !important;
+        border-color: #444444 !important;
+    }
+</style>
+
+<button class="dark-mode-floating-btn" onclick="applyDarkMode()" id="theme-switcher">🌙</button>
+
+<script>
+    function applyDarkMode() {
+        const bodyElement = document.body;
+        const themeBtn = document.getElementById('theme-switcher');
+        
+        // تبديل الفئة (Class)
+        bodyElement.classList.toggle('dark-mode-active');
+        
+        // تغيير شكل الزر وحفظ الحالة
+        if (bodyElement.classList.contains('dark-mode-active')) {
+            themeBtn.innerText = '☀️';
+            themeBtn.style.background = '#ed8936';
+            localStorage.setItem('qudrat-theme', 'dark');
+        } else {
+            themeBtn.innerText = '🌙';
+            themeBtn.style.background = '#2b6cb0';
+            localStorage.setItem('qudrat-theme', 'light');
+        }
+    }
+
+    // كود إضافي: حفظ اختيار الطالب حتى لو أغلق الصفحة
+    window.addEventListener('DOMContentLoaded', (event) => {
+        if (localStorage.getItem('qudrat-theme') === 'dark') {
+            applyDarkMode();
+        }
+    });
 </script>
 </body>
 </html>
