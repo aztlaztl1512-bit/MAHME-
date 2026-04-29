@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة تحكم المعلم</title>
+    </head>
+<body>
+    <script>
+        // "القفل البرمجي" لحماية المنصة
+        const pass = prompt("كلمة مرور الإدارة:");
+        if (pass !== "12345") { // غير الرقم 12345 لكلمة مرورك الخاصة
+            document.body.innerHTML = "<h1>غير مصرح لك بالدخول</h1>";
+            throw new Error("Access Denied");
+        }
+    </script>
+
+    <h1>لوحة تحكم الاختبار الشامل</h1>
+    <p>أهلاً بك أستاذ عبدالعزيز، هذه المنصة خاصة بك فقط.</p>
+    
+    <div id="stats-area">
+        </div>
+
+    <script type="module">
+        // كود الاتصال بـ Firebase هنا
+    </script>
+</body>
+</html>
