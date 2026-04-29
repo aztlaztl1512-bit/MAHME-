@@ -2,26 +2,43 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>لوحة تحكم المعلم</title>
-    </head>
+    <title>لوحة التحكم الإدارية - أ/ عبدالعزيز الفيفي</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f4f4f4; padding: 20px; }
+        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: 20px; }
+    </style>
+</head>
 <body>
+
     <script>
-        // "القفل البرمجي" لحماية المنصة
-        const pass = prompt("كلمة مرور الإدارة:");
-        if (pass !== "12345") { // غير الرقم 12345 لكلمة مرورك الخاصة
-            document.body.innerHTML = "<h1>غير مصرح لك بالدخول</h1>";
-            throw new Error("Access Denied");
+        // نظام الحماية البسيط باستخدام مفتاح الدخول الخاص بك
+        const correctKey = "Aztlg1512";
+        const userInput = prompt("أدخل مفتاح الدخول الخاص بلوحة التحكم:");
+
+        if (userInput !== correctKey) {
+            document.body.innerHTML = "<h1 style='color:red; text-align:center; margin-top:50px;'>غير مصرح لك بالدخول!</h1>";
+            // إيقاف تحميل الصفحة
+            window.stop(); 
         }
     </script>
 
-    <h1>لوحة تحكم الاختبار الشامل</h1>
-    <p>أهلاً بك أستاذ عبدالعزيز، هذه المنصة خاصة بك فقط.</p>
-    
-    <div id="stats-area">
+    <div class="card">
+        <h1>لوحة تحكم المعلم (الاختبار الشامل)</h1>
+        <p>مرحباً بك يا أستاذ عبدالعزيز. أنت الآن في المنطقة الآمنة والمخصصة لك فقط.</p>
+        
+        <div id="models-nav">
+            </div>
+
+        <div id="stats-area" style="margin-top:30px;">
+            <canvas id="scoreChart" width="400" height="200"></canvas>
         </div>
+    </div>
 
     <script type="module">
-        // كود الاتصال بـ Firebase هنا
+        // هنا ستضع كود Firebase لاحقاً لجلب النتائج وعرضها في الرسم البياني
+        console.log("تم تفعيل لوحة التحكم بنجاح.");
     </script>
+
 </body>
 </html>
